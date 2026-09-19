@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#17191f" />
+    <title>MineDuty · 网格指令工作台</title>
+    <link rel="stylesheet" href="./styles.css?v=20260919-3" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">MD</div>
+          <div>
+            <p class="eyebrow">MINE DUTY / WEB EDITION</p>
+            <h1>网格指令工作台</h1>
+          </div>
+        </div>
+        <div class="topbar-status">
+          <span class="status-dot" id="statusDot"></span>
+          <span id="statusText">准备就绪</span>
+          <span class="divider"></span>
+          <span class="mono">x <b id="topX">0</b></span>
+          <span class="mono">y <b id="topY">0</b></span>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <aside class="panel editor-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">01 / PROGRAM</p>
+              <h2>程序编辑器</h2>
+            </div>
+            <select id="exampleSelect" class="select-control" aria-label="选择示例程序">
+              <option value="program1">程序 1</option>
+              <option value="program2">程序 2</option>
+            </select>
+          </div>
+
+          <div class="editor-wrap">
+            <div class="line-numbers" id="lineNumbers" aria-hidden="true"></div>
+            <textarea id="codeInput" spellcheck="false" aria-label="MineDuty 程序编辑器"></textarea>
+            <div class="current-line" id="currentLine" aria-hidden="true"></div>
+          </div>
+
+          <div class="editor-footer">
+            <span><i class="key-icon">⌘</i><i class="key-icon">↵</i> 运行程序</span>
+            <span id="lineCount">0 行</span>
+          </div>
+
+          <div class="control-row">
+            <button class="button button-primary" id="runButton" type="button">
+              <span class="button-icon">▶</span>运行
+            </button>
+            <button class="button button-secondary" id="stepButton" type="button">
+              <span class="button-icon">▷</span>单步
+            </button>
+            <button class="icon-button" id="resetButton" type="button" title="重置运行状态" aria-label="重置运行状态">↻</button>
+            <button class="icon-button" id="clearButton" type="button" title="清空编辑器" aria-label="清空编辑器">⌫</button>
+          </div>
+
+          <div class="speed-row">
+            <label for="speedInput">执行速度</label>
+            <input id="speedInput" type="range" min="1" max="100" value="100" />
+            <span class="speed-value" id="speedValue">100 步/s</span>
+          </div>
+        </aside>
+
+        <section class="panel stage-panel">
+          <div class="stage-heading">
+            <div>
+              <p class="section-kicker">02 / SIMULATION</p>
+              <h2>运行视图</h2>
+            </div>
+            <div class="stage-meta">
+              <span class="pill" id="extensionPill">基础指令</span>
+              <span class="pill pill-muted" id="artPill">默认美术</span>
+            </div>
+          </div>
+
+          <div class="stage">
+            <canvas id="boardCanvas" width="680" height="680" aria-label="MineDuty 网格运行视图"></canvas>
+            <div class="stage-overlay">
+              <span id="stepCounter">STEP 0</span>
+              <span>GRID / 25 × 25</span>
+            </div>
+          </div>
+
+        </section>
+
+        <aside class="right-column">
+          <section class="panel console-panel">
+            <div class="panel-heading compact">
+              <div>
+                <p class="section-kicker">03 / CONSOLE</p>
+                <h2>输入 / 输出</h2>
+              </div>
+              <button class="text-button" id="clearConsoleButton" type="button">清空</button>
+            </div>
+            <div class="input-hint" id="inputHint" role="alert" aria-live="assertive" hidden>
+              <span class="hint-pulse">!</span>
+              <div>
+                <strong>程序正在询问</strong>
+                <span>请输入自然数（0 或正整数），然后按回车提交</span>
+              </div>
+            </div>
+            <div class="console-output" id="consoleOutput">
+              <div class="console-empty">运行结果会显示在这里</div>
+            </div>
+            <form class="input-form" id="inputForm">
+              <span class="prompt-mark">&gt;</span>
+              <input id="consoleInput" type="text" autocomplete="off" placeholder="等待程序询问..." disabled />
+              <button type="submit" title="提交输入" aria-label="提交输入">↵</button>
+            </form>
+          </section>
+
+        </aside>
+      </section>
+    </main>
+    <script src="./app.js?v=20260919-3"></script>
+  </body>
+</html>
